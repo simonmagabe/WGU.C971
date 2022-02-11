@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU.C971.Views.TermPage">
+
+    <ContentPage.ToolbarItems>
+        
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        
+        <StackLayout Margin="20">
+            <StackLayout>
+                <Label Text="New Term" FontSize="25" Margin="20" HorizontalOptions="Center"/>
+            </StackLayout>
+            <Entry x:Name="newTermName" Placeholder="TERM NAME" BackgroundColor="AliceBlue"/>
+            <Label Text="START"/>
+            <DatePicker x:Name="DatePickerStartDate"/>
+            <Label Text="END DATE"/>
+            <DatePicker x:Name="DatePickerEndDate"/>
+
+            <Button 
+                x:Name="SaveBtn" 
+                Text="SAVE" 
+                TextColor="White" 
+                BackgroundColor="CadetBlue"
+                Clicked="SaveBtn_Clicked"/>
+            <Button x:Name="CancelBtn" Text="CANCEL" TextColor="White" BackgroundColor="Red"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
