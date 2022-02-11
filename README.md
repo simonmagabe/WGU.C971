@@ -1,10 +1,12 @@
 # WGU.C971
 A Xamarin Mobile App for Academic Degree Plan. This is WGU Mobile Application Development Project.
 
+# REQUIREMENTS
 A.  Draw a low-fidelity wireframe for your mobile application, that includes all of the following requirements:
 
 
-Note: This assessment requires you to submit pictures, graphics, and/or diagrams. Each file must be an attachment no larger than 30 MB in size. Diagrams must be original and may be hand-drawn or drawn using a graphics program. Do not use CAD programs because attachments will be too large.
+# Note:
+This assessment requires you to submit pictures, graphics, and/or diagrams. Each file must be an attachment no larger than 30 MB in size. Diagrams must be original and may be hand-drawn or drawn using a graphics program. Do not use CAD programs because attachments will be too large.
 
 
 
