@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU.C971.Views.TermDetailPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="{Binding Title}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="Teal" Orientation="Horizontal" Margin="0" Padding="10">
+                <Label Text="Start Date:" FontSize="16" Margin="5, 0, 0, 5"/>
+                <Label x:Name="LblTermStartDate" FontSize="16" Margin="5, 0, 0, 5"/>
+            </StackLayout>
+            <StackLayout BackgroundColor="Teal" Orientation="Horizontal" Margin="0" Padding="10">
+                <Label Text="End Date:" FontSize="16" Margin="5, 0, 0, 5"/>
+                <Label x:Name="LblTermEndDate" FontSize="16" Margin="5, 0, 0, 5"/>
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout Margin="10, 20, 0, 0">
+                    <Label Text="Course:" FontSize="16"/>
+                </StackLayout>
+                <ListView x:Name="CourseListView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell x:Name="CourseCell" Tapped="CourseCell_Tapped">
+                                <StackLayout VerticalOptions="Center">
+                                    <Label Text="{Binding Name}" TextColor="Black" FontSize="18" Margin="10, 0, 0, 0"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Button x:Name="BtnAddNewCourse" 
+                        Text="NEW COURSE"
+                        BackgroundColor="LimeGreen"
+                        Clicked="BtnAddNewCourse_Clicked"/>
+                <Button x:Name="BtnEditTerm"
+                        Text="EDIT TERM"
+                        BackgroundColor="CornflowerBlue"
+                        Clicked="BtnEditTerm_Clicked"/>
+                <Button x:Name="BtnDeleteTerm"
+                        Text="DELETE TERM"
+                        BackgroundColor="IndianRed"
+                        Clicked="BtnDeleteTerm_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
