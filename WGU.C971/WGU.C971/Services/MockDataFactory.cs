@@ -23,15 +23,15 @@ namespace WGU.C971.Services
 
             Course course = new Course()
             {
-                Name = "Software 2",
+                Name = "Software 1",
                 TermId = term.Id,
-                Status = "Plan To Take",
+                Status = "Anticipate To Take",
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddMonths(4),
                 InstructorName = "Jane Doe",
                 InstructorEmail = "jdoe@wgu.edu",
                 InstructorPhone = "555-555-5555",
-                Note = "Welcome to Western Governors University. This is Software 2"
+                Note = "Welcome to Western Governors University. This is Software 1"
             };
             using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
             {

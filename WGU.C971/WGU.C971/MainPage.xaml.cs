@@ -18,7 +18,7 @@ namespace WGU.C971
     {
         public MainPage MainHomePage;
         public List<Term> TermList = new List<Term>();
-        public List<Course> Courses = new List<Course>();
+        public List<Course> CoursesList = new List<Course>();
         public List<Assessment> AssessmentList = new List<Assessment>();
 
         public bool NeedMockData = true;
@@ -38,7 +38,7 @@ namespace WGU.C971
 
         private void AddNewTermToolBarItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new TermPage());
+            Navigation.PushModalAsync(new AddNewTermPage(MainHomePage));
         }
 
         protected override void OnAppearing()
@@ -65,7 +65,7 @@ namespace WGU.C971
                     connection.CreateTable<Course>();
                     connection.CreateTable<Assessment>();
 
-                    MockDataFactory.GenerateSampleMockData(3);
+                    MockDataFactory.GenerateSampleMockData(1);
                 }
 
                 NeedMockData = false;

@@ -12,13 +12,16 @@ using Xamarin.Forms.Xaml;
 namespace WGU.C971.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TermPage : ContentPage
+    public partial class AddNewTermPage : ContentPage
     {
-        public TermPage()
+        public MainPage MainPage;
+
+        public AddNewTermPage(MainPage mainPage)
         {
             InitializeComponent();
             BindingContext = new TermViewModel();
             DatePickerEndDate.Date = DateTime.Now.AddMonths(4);
+            MainPage = mainPage;
         }
 
         private async void SaveBtn_Clicked(object sender, EventArgs e)
@@ -41,7 +44,7 @@ namespace WGU.C971.Views
                             throw new ApplicationException("Start Date cannot be Greater than the End Date");
                         }
 
-                        int days = 120;
+                        int days = (term.EndDate - term.StartDate).Days;
 
                         if ((term.EndDate - term.StartDate).Days < days || (term.EndDate - term.StartDate).Days > days)
                         {
@@ -50,6 +53,7 @@ namespace WGU.C971.Views
 
                         connection.CreateTable<Term>();
                         int insertedRows = connection.Insert(term);
+                        MainPage.TermList.Add(term);
 
                         if (insertedRows < 1)
                         {
@@ -59,7 +63,7 @@ namespace WGU.C971.Views
                         string successMessage = $"{term.Name} has been added successfully.";
                         await DisplayAlert("Success", successMessage, "OK");
 
-                        await Navigation.PushAsync(new MainPage());
+                        await Navigation.PopModalAsync();
                     }
                     else
                     {
@@ -85,6 +89,11 @@ namespace WGU.C971.Views
             return !String.IsNullOrWhiteSpace(newTermName.Text) 
                 && !String.IsNullOrWhiteSpace(DatePickerStartDate.Date.ToString()) 
                 && !String.IsNullOrWhiteSpace(DatePickerEndDate.Date.ToString());
+        }
+
+        private void DatePickerStartDate_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            DatePickerEndDate.Date = DatePickerStartDate.Date.AddMonths(4);
         }
     }
 }

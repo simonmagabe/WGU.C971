@@ -32,7 +32,7 @@
                                     Text="{Binding StartDate}"
                                     VerticalOptions="Center"
                                     TextColor="Black"/>
-                                <Label Text=" - "/>
+                                <Label Text=" - " VerticalOptions="Center" TextColor="Black"/>
                                 <Label
                                     Text="{Binding EndDate}"
                                     VerticalOptions="Center"

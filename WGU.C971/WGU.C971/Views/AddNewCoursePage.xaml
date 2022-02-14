@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU.C971.Views.AddNewCoursePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New Course"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label FontSize="22">New Course</Label>
+            </StackLayout>
+            <StackLayout>
+                <Entry x:Name="TxtCourseName" Placeholder="Course Name"/>
+                <Picker x:Name="PickerCourseStatus" Title="Course Status">
+                    <Picker.Items>
+                        <x:String>Anticipate To Take</x:String>
+                        <x:String>In Progress</x:String>
+                        <x:String>Completed</x:String>
+                        <x:String>Withdrawn</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label Text="Start Date"/>
+                <DatePicker x:Name="DatePickerStartDate" />
+
+                <Label Text="End Date"/>
+                <DatePicker x:Name="DatePickerEndDate"/>
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout Margin="0, 5">
+                    <Label Text="Course Instructor" TextColor="Black" 
+                       FontSize="14" VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <Entry x:Name="TxtInstructorName" Placeholder="Name"/>
+                <Entry x:Name="TxtInstructorEmail" Placeholder="Email"/>
+                <Entry x:Name="TxtInstructorPhone" Placeholder="Phone"/>
+                <Entry x:Name="TxtNotes" Placeholder="Notes...."/>
+
+                <StackLayout>
+                    <Button x:Name="BtnSaveCourse" 
+                            Text="SAVE" 
+                            BackgroundColor="DodgerBlue" 
+                            TextColor="Black"
+                            Clicked="BtnSaveCourse_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

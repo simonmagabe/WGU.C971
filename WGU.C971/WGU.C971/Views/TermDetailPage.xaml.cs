@@ -26,8 +26,14 @@ namespace WGU.C971.Views
             InitializeComponent();
             MainPage = mainPage;
             Term = term;
-
             Title = term.Name;
+            CourseListView.ItemTapped += new EventHandler<ItemTappedEventArgs>(CourseItemTapped);
+        }
+
+        private async void CourseItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Course selectedCourse = (Course)e.Item;
+            await Navigation.PushAsync(new CourseDetailPage(Term, selectedCourse, MainPage));
         }
 
         protected override void OnAppearing()
@@ -45,9 +51,18 @@ namespace WGU.C971.Views
             }
         }
 
-        private void BtnAddNewCourse_Clicked(object sender, EventArgs e)
+        private async void BtnAddNewCourse_Clicked(object sender, EventArgs e)
         {
-
+            if (GetCourseCount() < 6)
+            {
+                await Navigation.PushModalAsync(new AddNewCoursePage(Term, MainPage));
+            }
+            else
+            {
+                string title = "Course Maximum Warning!";
+                string message = "You cannot add more courses.\nA Maximum number of courses per Term reached.";
+                await DisplayAlert(title, message, "OK");
+            }
         }
 
         private void BtnEditTerm_Clicked(object sender, EventArgs e)
@@ -66,18 +81,16 @@ namespace WGU.C971.Views
                 {
                     using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
                     {
-                        string courseQueryString = $"SELECT * FROM Course WHERE TermId = '{ Term.Id }';";
-                        List<Course> courses = connection.Query<Course>(courseQueryString);
+                        List<Course> courses = connection.Query<Course>($"SELECT * FROM Course WHERE TermId = '{ Term.Id }';");
 
                         foreach (Course course in courses)
                         {
-                            string assessmentQueryString = $"SLECT * FROM Assessment WHERE CourseId = '{ course.Id }';";
-                            List<Assessment> assessments = connection.Query<Assessment>(assessmentQueryString);
+                            List<Assessment> assessments = connection.Query<Assessment>($"SELECT * FROM Assessment WHERE CourseId = '{ course.Id }';");
                             foreach (Assessment assessment in assessments)
                             {
                                 connection.Delete(assessment);
                             }
-                            connection.Delete<Course>(course);
+                            connection.Delete(course);
                         }
 
                         connection.Delete(Term);
@@ -87,13 +100,21 @@ namespace WGU.C971.Views
             }
             catch (Exception ex)
             {
-                _ = ex.Message;
+                Console.WriteLine(ex.ToString());
             }
         }
 
-        private void CourseCell_Tapped(object sender, EventArgs e)
+        private int GetCourseCount()
         {
-            throw new NotImplementedException();
+            int count = 0;
+
+            using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
+            {
+                string queryString = $"SELECT * FROM Course WHERE TermId = '{ Term.Id }';";
+                List<Course> courses = connection.Query<Course>(queryString);
+                count = courses.Count();
+            }
+                return count;
         }
     }
 }
