@@ -55,9 +55,40 @@ namespace WGU.C971.Views
 
         }
 
-        private void BtnDeleteTerm_Clicked(object sender, EventArgs e)
+        private async void BtnDeleteTerm_Clicked(object sender, EventArgs e)
         {
+            // Cascade Delete associated courses and their associated assessments
+            try
+            {
+                string message = $"Are you sure you want to delete { Term.Name }?";
+                var response = await DisplayAlert("Warning!", message, "Yes", "No");
+                if (response)
+                {
+                    using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
+                    {
+                        string courseQueryString = $"SELECT * FROM Course WHERE TermId = '{ Term.Id }';";
+                        List<Course> courses = connection.Query<Course>(courseQueryString);
 
+                        foreach (Course course in courses)
+                        {
+                            string assessmentQueryString = $"SLECT * FROM Assessment WHERE CourseId = '{ course.Id }';";
+                            List<Assessment> assessments = connection.Query<Assessment>(assessmentQueryString);
+                            foreach (Assessment assessment in assessments)
+                            {
+                                connection.Delete(assessment);
+                            }
+                            connection.Delete<Course>(course);
+                        }
+
+                        connection.Delete(Term);
+                        await Navigation.PopToRootAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = ex.Message;
+            }
         }
 
         private void CourseCell_Tapped(object sender, EventArgs e)
