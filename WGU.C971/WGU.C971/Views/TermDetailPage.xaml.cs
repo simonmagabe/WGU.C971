@@ -33,13 +33,13 @@ namespace WGU.C971.Views
         private async void CourseItemTapped(object sender, ItemTappedEventArgs e)
         {
             Course selectedCourse = (Course)e.Item;
-            await Navigation.PushAsync(new CourseDetailPage(Term, selectedCourse, MainPage));
+            await Navigation.PushModalAsync(new CourseDetailPage(Term, selectedCourse, MainPage));
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            LblTermStartDate.Text = Term.StartDate.ToString("MM/dd/yyyy");
+            LblTermStartDate.Text = Term.StartDate.Date.ToString("MM/dd/yyyy");
             LblTermEndDate.Text = Term.EndDate.ToString("MM/dd/yyyy");
 
             using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
@@ -65,9 +65,9 @@ namespace WGU.C971.Views
             }
         }
 
-        private void BtnEditTerm_Clicked(object sender, EventArgs e)
+        private async void BtnEditTerm_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new EditTermPage(Term, MainPage));
         }
 
         private async void BtnDeleteTerm_Clicked(object sender, EventArgs e)

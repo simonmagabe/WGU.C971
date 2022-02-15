@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU.C971.Views.EditTermPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Entry x:Name="TxtTermName" Placeholder="Term Name"/>
+                <Label Text="Start Date: " />
+                <DatePicker x:Name="DatePickerStartDate"/>
+                <Label Text="End Date: "/>
+                <DatePicker x:Name="DatePickerEndDate"/>
+            </StackLayout>
+            <StackLayout>
+                <Button x:Name="BtnSave"
+                        Text="SAVE"
+                        Clicked="BtnSave_Clicked"/>
+                <Button x:Name="BtnCancel"
+                        Text="CANCEL"
+                        Clicked="BtnCancel_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

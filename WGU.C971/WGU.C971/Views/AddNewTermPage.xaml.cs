@@ -95,5 +95,10 @@ namespace WGU.C971.Views
         {
             DatePickerEndDate.Date = DatePickerStartDate.Date.AddMonths(4);
         }
+
+        private async void CancelBtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
     }
 }

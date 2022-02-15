@@ -10,16 +10,22 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout BackgroundColor="Teal" Orientation="Horizontal" Margin="0" Padding="10">
-                <Label Text="Start Date:" FontSize="16" Margin="5, 0, 0, 5"/>
-                <Label x:Name="LblTermStartDate" FontSize="16" Margin="5, 0, 0, 5"/>
-            </StackLayout>
-            <StackLayout BackgroundColor="Teal" Orientation="Horizontal" Margin="0" Padding="10">
-                <Label Text="End Date:" FontSize="16" Margin="5, 0, 0, 5"/>
-                <Label x:Name="LblTermEndDate" FontSize="16" Margin="5, 0, 0, 5"/>
+            <StackLayout Padding="1" Margin="2">
+                <StackLayout BackgroundColor="Teal" Margin="0" Padding="10">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Text="Start Date: " FontSize="16" Margin="5, 0, 0, 5"/>
+                        <Label  x:Name="LblTermStartDate"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout BackgroundColor="Teal" Margin="0" Padding="10">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Text="End Date: " FontSize="16" Margin="5, 0, 0, 5"/>
+                        <Label x:Name="LblTermEndDate"/>
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
 
-            <StackLayout>
+            <StackLayout Margin="0, 0,0, 5" Padding="2">
                 <StackLayout Margin="10, 20, 0, 0">
                     <Label Text="Course:" FontSize="16"/>
                 </StackLayout>

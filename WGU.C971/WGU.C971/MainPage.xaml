@@ -11,11 +11,11 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="AliceBlue">
             <Label Text="DEGREE PLAN" 
-                FontSize="30"
-                HorizontalOptions="Center" 
-                BackgroundColor="Beige"/>
+                FontSize="25"
+                HorizontalOptions="Center"
+                Margin="10"/>
 
             <ListView x:Name="DegreePlanListView">
                 <ListView.ItemTemplate>

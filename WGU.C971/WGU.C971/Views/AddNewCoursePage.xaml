@@ -2,16 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WGU.C971.Views.AddNewCoursePage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
-            Text="New Course"/>
-    </ContentPage.ToolbarItems>
-    
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout HorizontalOptions="CenterAndExpand">
-                <Label FontSize="22" TextColor="Black">New Course</Label>
-            </StackLayout>
+        <StackLayout Margin="5">
             <StackLayout Margin="10">
                 <Entry x:Name="TxtCourseName" Placeholder="Course Name"/>
                 <Picker x:Name="PickerCourseStatus" Title="Course Status">
@@ -48,6 +40,11 @@
                             BackgroundColor="DodgerBlue" 
                             TextColor="Black"
                             Clicked="BtnSaveCourse_Clicked"/>
+                    <Button x:Name="BtnCancel" 
+                            Text="CANCEL" 
+                            BackgroundColor="OrangeRed" 
+                            TextColor="Black"
+                            Clicked="BtnCancel_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

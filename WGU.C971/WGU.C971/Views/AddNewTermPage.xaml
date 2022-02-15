@@ -4,7 +4,7 @@
              x:Class="WGU.C971.Views.AddNewTermPage">
 
     <ContentPage.ToolbarItems>
-        
+        <ToolbarItem Text="New Term" />
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
@@ -25,7 +25,12 @@
                 TextColor="White" 
                 BackgroundColor="CadetBlue"
                 Clicked="SaveBtn_Clicked"/>
-            <Button x:Name="CancelBtn" Text="CANCEL" TextColor="White" BackgroundColor="Red"/>
+            <Button 
+                x:Name="CancelBtn" 
+                Text="CANCEL" 
+                TextColor="White" 
+                BackgroundColor="Red"
+                Clicked="CancelBtn_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -134,5 +134,10 @@ namespace WGU.C971.Views
                 throw new ApplicationException(message);
             }
         }
+
+        private async void BtnCancel_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
     }
 }
