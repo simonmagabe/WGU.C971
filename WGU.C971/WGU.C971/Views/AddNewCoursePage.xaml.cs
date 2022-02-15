@@ -58,6 +58,11 @@ namespace WGU.C971.Views
                         throw new ApplicationException("Course Name is REQUIRED");
                     }
 
+                    if (PickerCourseStatus.SelectedItem == null)
+                    {
+                        throw new ApplicationException("Course Status is REQUIRED");
+                    }
+
                     if (String.IsNullOrWhiteSpace(DatePickerStartDate.Date.ToString()))
                     {
                         throw new ApplicationException("Start Date is REQUIRED");
@@ -86,18 +91,19 @@ namespace WGU.C971.Views
             }
             catch (ApplicationException ex)
             {
-                await DisplayAlert(Title, ex.Message, "OK");
+                await DisplayAlert("Warning", ex.Message, "OK");
             }
             catch (Exception ex)
             {
-                _ = ex.Message;
+                Console.WriteLine(ex.Message);
+                await DisplayAlert("Warning", Title, ex.Message, "OK");
             }
         }
 
         private bool RequiredCourseEntryPopulated()
         {
             return !String.IsNullOrWhiteSpace(TxtCourseName.Text) &&
-                !String.IsNullOrWhiteSpace(PickerCourseStatus.SelectedItem.ToString()) &&
+                PickerCourseStatus.SelectedItem != null &&
                 !String.IsNullOrWhiteSpace(DatePickerStartDate.Date.ToString()) && 
                 !String.IsNullOrWhiteSpace(DatePickerEndDate.Date.ToString()) &&
                 !String.IsNullOrWhiteSpace(TxtInstructorName.Text) &&
