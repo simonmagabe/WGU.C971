@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU.C971.Views.EditAssessmentPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Edit Assessment"
+                       FontSize="16"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <StackLayout>
+                <Entry x:Name="TxtAssessmentName" Placeholder="Assessment Name"/>
+                <Picker x:Name="PickerAssessmentType" Title="Select Assessment Type">
+                    <Picker.Items>
+                        <x:String>Perfomance</x:String>
+                        <x:String>Objective</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Label Text="Start Date: "/>
+                <DatePicker x:Name="DatePickerStartDate"/>
+
+                <Label Text="End Date: "/>
+                <DatePicker x:Name="DatePickerEndDate"/>
+            </StackLayout>
+            <StackLayout Margin="0,50,0,0">
+                <Button x:Name="BtnSave" Text="Save"/>
+                <Button x:Name="BtnCancel" Text="Cancel"/>
+                <Button x:Name="BtnDelete" Text="Delete Assessment"/>
+                <Button x:Name="BtnGoBack" Text="Go Back" Clicked="BtnGoBack_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

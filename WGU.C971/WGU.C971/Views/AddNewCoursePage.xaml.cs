@@ -23,6 +23,11 @@ namespace WGU.C971.Views
             MainPage = mainPage;
         }
 
+        public AddNewCoursePage()
+        {
+            InitializeComponent();
+        }
+
         private async void BtnSaveCourse_Clicked(object sender, EventArgs e)
         {
             try
@@ -40,7 +45,7 @@ namespace WGU.C971.Views
                         InstructorName = TxtInstructorName.Text,
                         InstructorEmail = TxtInstructorEmail.Text,
                         InstructorPhone = TxtInstructorPhone.Text,
-                        Note = TxtNotes.ToString().Trim(),
+                        Note = TxtNotes.Text,
                         TermId = Term.Id
                     };
 
@@ -119,7 +124,7 @@ namespace WGU.C971.Views
                 throw new ApplicationException(message);
             }
 
-            if (DatePickerStartDate.Date < DateTime.Now)
+            if (DatePickerStartDate.Date < DateTime.Today)
             {
                 string message = "Start Date Cannot Be a Past Date.\nPlease Select a Future Date.";
                 throw new ApplicationException(message);

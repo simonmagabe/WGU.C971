@@ -33,7 +33,7 @@ namespace WGU.C971.Views
         private async void CourseItemTapped(object sender, ItemTappedEventArgs e)
         {
             Course selectedCourse = (Course)e.Item;
-            await Navigation.PushModalAsync(new CourseDetailPage(Term, selectedCourse, MainPage));
+            await Navigation.PushModalAsync(new CourseDetailPage(MainPage, Term, selectedCourse));
         }
 
         protected override void OnAppearing()
