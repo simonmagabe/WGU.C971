@@ -77,7 +77,7 @@ namespace WGU.C971.Services
                     CourseId = courses[i].Id,
                     StartDate = DateTime.Today,
                     EndDate = DateTime.Today.AddHours(2.5),
-                    Type = "Performance"
+                    Type = "Objective"
                 };
                 objectiveAssessments.Add(objectiveAssessment);
 

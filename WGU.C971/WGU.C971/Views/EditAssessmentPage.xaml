@@ -26,9 +26,9 @@
                 <DatePicker x:Name="DatePickerEndDate"/>
             </StackLayout>
             <StackLayout Margin="0,50,0,0">
-                <Button x:Name="BtnSave" Text="Save"/>
-                <Button x:Name="BtnCancel" Text="Cancel"/>
-                <Button x:Name="BtnDelete" Text="Delete Assessment"/>
+                <Button x:Name="BtnSave" Text="Save" Clicked="BtnSave_Clicked"/>
+                <Button x:Name="BtnCancel" Text="Cancel" Clicked="BtnCancel_Clicked"/>
+                <Button x:Name="BtnDelete" Text="Delete Assessment" Clicked="BtnDelete_Clicked"/>
                 <Button x:Name="BtnGoBack" Text="Go Back" Clicked="BtnGoBack_Clicked"/>
             </StackLayout>
         </StackLayout>
