@@ -43,7 +43,7 @@ namespace WGU.C971.Views
             try
             {
                 bool assessmentTypeModified = Assessment.Type != PickerAssessmentType.SelectedItem.ToString().Trim();
-                bool assessmentDatesModified = (Assessment.StartDate != DatePickerStartDate.Date) || (Assessment.EndDate != DatePickerEndDate.Date);
+                bool assessmentDatesModified = (Assessment.StartDate != DatePickerStartDate.Date) || (Assessment.EndDate != DatePickerEndDate.Date.AddHours(2.5));
                 string perfAssessmentQuery = $"SELECT * FROM Assessment WHERE CourseId = {Course.Id} AND Type = 'Performance';";
                 string objAssessmentQuery = $"SELECT * FROM Assessment WHERE CourseId = {Course.Id} AND Type = 'Objective';";
 
@@ -74,7 +74,7 @@ namespace WGU.C971.Views
                             await Navigation.PopModalAsync();
                         }
                         else if (((isPerfAssessment && perfAssessments.Count == 1) || (isObjAssessment && objAssessments.Count == 1))
-                               && hasAssessmentId && !assessmentDatesModified)
+                               && hasAssessmentId && !assessmentTypeModified)
                         {
                             connection.Update(Assessment);
                             await Navigation.PopModalAsync();

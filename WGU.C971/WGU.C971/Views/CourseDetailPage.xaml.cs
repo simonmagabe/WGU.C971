@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WGU.C971.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -40,21 +41,19 @@ namespace WGU.C971.Views
             TxtNotes.Text = Course.Note;
         }
 
-        private void BtnShareNote_Clicked(object sender, EventArgs e)
+        private async void BtnShareNote_Clicked(object sender, EventArgs e)
         {
-
+            await ShareNotes();
         }
 
         private async void BtnSaveCourse_Clicked(object sender, EventArgs e)
         {
             try
             {
-                // Validate the inputs
                 if (RequiredCourseFieldsPopulated())
                 {
                     ValidateStartAndEndDates();
 
-                    // Save new course values to the course table
                     Course.Name = TxtCourseName.Text;
                     Course.Status = PickerCourseStatus.SelectedItem.ToString();
                     Course.StartDate = DatePickerStartDate.Date;
@@ -187,6 +186,15 @@ namespace WGU.C971.Views
                     "The course Must Start and End within the Term's Start and End Date.";
                 throw new ApplicationException(message);
             }
+        }
+
+        private async Task ShareNotes()
+        {
+            await Share.RequestAsync(new ShareTextRequest {
+                Subject = $"{Course.Name} Notes",
+                Title = "Sharing Notes",
+                Text = Course.Note
+            });
         }
     }
 }

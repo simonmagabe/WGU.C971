@@ -71,8 +71,7 @@ namespace WGU.C971
                 NeedMockData = false;
                 DisplayNotifications();
             }
-
-            if (NeedMockData)
+            else if (NeedMockData)
             {
                 MockDataFactory.GenerateSampleMockData(3);
                 DisplayNotifications();
@@ -83,6 +82,7 @@ namespace WGU.C971
             {
                 TermList = connection.Table<Term>().ToList();
                 DegreePlanListView.ItemsSource = TermList;
+                DisplayNotifications();
             }
         }
 
@@ -92,7 +92,7 @@ namespace WGU.C971
             {
                 using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
                 {
-                    string courseQueryString = $"SELECT * FROM Course WHERE TermId = '{ term.Id };'";
+                    string courseQueryString = $"SELECT * FROM Course WHERE TermId = '{ term.Id }';";
                     List<Course> courses = connection.Query<Course>(courseQueryString);
 
                     foreach (Course course in courses)
@@ -103,14 +103,14 @@ namespace WGU.C971
                         if (daysToStartDate <= 7)
                         {
                             string title = "Course Due Soon Notification";
-                            string message = $"{course.Name} will start in {daysToStartDate} days. \nStart Date: {course.StartDate}";
+                            string message = $"{course.Name} Will Start Soon. \nStart Date: {course.StartDate}";
                             CrossLocalNotifications.Current.Show(title, message);
                         }
 
                         if (daysToEndDate <= 7)
                         {
                             string title = "Course End Soon Notification";
-                            string message = $"{course.Name} will end in {daysToEndDate} days. \nEnd Date: {course.EndDate}";
+                            string message = $"{course.Name} Will End Soon. \nEnd Date: {course.EndDate}";
                             CrossLocalNotifications.Current.Show(title, message);
                         }
 
@@ -122,7 +122,7 @@ namespace WGU.C971
                             if (daysToStartAssessment <= 5)
                             {
                                 string title = "Assessment Due Soon Notification";
-                                string message = $"{ assessment.Name } will start in {daysToStartDate} days. \nDate Due: {course.EndDate}";
+                                string message = $"{ assessment.Name } is Due Soon. \nDate Due: {assessment.EndDate}";
                                 CrossLocalNotifications.Current.Show(title, message);
                             }
                         }

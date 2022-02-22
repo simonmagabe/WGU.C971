@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
-                <Label Text="{Binding Title}"
+                <Label Text="COURSE ASSESSMENTS"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="CenterAndExpand" 
                        FontSize="18" 

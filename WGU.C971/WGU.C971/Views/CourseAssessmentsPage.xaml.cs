@@ -46,14 +46,27 @@ namespace WGU.C971.Views
             }
         }
 
+        private async void BtnAddNewAssessment_Clicked(object sender, EventArgs e)
+        {
+            List<Assessment> assessments;
+            using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
+            {
+                assessments = connection.Query<Assessment>($"SELECT * FROM Assessment WHERE CourseId = {Course.Id};");
+            }
+
+            if (assessments.Count >= 2)
+            {
+                await DisplayAlert("Warning!", "A Course Should Only have 1 Performance Assessment and 1 Objective Assessment.", "OK");
+            }
+            else
+            {
+                await Navigation.PushModalAsync(new AddNewCourseAssessment(Course, MainPage));
+            }
+        }
+
         private async void BtnBack_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
-        }
-
-        private void BtnAddNewAssessment_Clicked(object sender, EventArgs e)
-        {
-
         }
     }
 }

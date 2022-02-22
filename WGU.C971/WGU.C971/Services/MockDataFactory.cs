@@ -13,8 +13,8 @@ namespace WGU.C971.Services
             Term term = new Term()
             {
                 Name = $"Term {termId}",
-                StartDate = DateTime.Today,
-                EndDate = DateTime.Today.AddMonths(4)
+                StartDate = DateTime.Today.AddDays(4),
+                EndDate = DateTime.Today.AddMonths(4).AddDays(4)
             };
             using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
             {
@@ -23,7 +23,7 @@ namespace WGU.C971.Services
 
             List<Course> courses = new List<Course>();
 
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 2; i++)
             {
                 string name = $"Test Course {i}";
 
@@ -32,12 +32,12 @@ namespace WGU.C971.Services
                     Name = name,
                     TermId = term.Id,
                     Status = "Anticipate To Take",
-                    StartDate = DateTime.Today,
-                    EndDate = DateTime.Today.AddMonths(4),
-                    InstructorName = "Jane Doe",
-                    InstructorEmail = "jdoe@wgu.edu",
+                    StartDate = DateTime.Today.AddDays(4),
+                    EndDate = DateTime.Today.AddMonths(4).AddDays(4),
+                    InstructorName = "Simon Magabe",
+                    InstructorEmail = "smagabe@wgu.edu",
                     InstructorPhone = "555-555-5555",
-                    Note = $"Welcome to Western Governors University. This is Test Course {i}"
+                    Note = $"Welcome to WGU. This is Test Course {i}"
                 };
                 courses.Add(course);
             }
@@ -49,14 +49,14 @@ namespace WGU.C971.Services
             
             List<Assessment> perfAssessments = new List<Assessment>();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Assessment performanceAssessment = new Assessment()
                 {
                     Name = "PAG1",
                     CourseId = courses[i].Id,
-                    StartDate = DateTime.Today,
-                    EndDate = DateTime.Today.AddHours(2.5),
+                    StartDate = DateTime.Today.AddDays(4),
+                    EndDate = DateTime.Today.AddDays(4).AddHours(2.5),
                     Type = "Performance"
                 };
                 perfAssessments.Add(performanceAssessment);
@@ -69,14 +69,14 @@ namespace WGU.C971.Services
             }
 
             List<Assessment> objectiveAssessments = new List<Assessment>();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Assessment objectiveAssessment = new Assessment()
                 {
                     Name = "OBJ1",
                     CourseId = courses[i].Id,
-                    StartDate = DateTime.Today,
-                    EndDate = DateTime.Today.AddHours(2.5),
+                    StartDate = DateTime.Today.AddDays(4),
+                    EndDate = DateTime.Today.AddDays(4).AddHours(2.5),
                     Type = "Objective"
                 };
                 objectiveAssessments.Add(objectiveAssessment);
