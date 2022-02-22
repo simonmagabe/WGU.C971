@@ -1,11 +1,6 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WGU.C971.Models;
-using WGU.C971.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +14,6 @@ namespace WGU.C971.Views
         public AddNewTermPage(MainPage mainPage)
         {
             InitializeComponent();
-            BindingContext = new TermViewModel();
             DatePickerEndDate.Date = DateTime.Now.AddMonths(4);
             MainPage = mainPage;
         }

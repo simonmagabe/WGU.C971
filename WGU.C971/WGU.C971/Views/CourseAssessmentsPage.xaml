@@ -30,9 +30,12 @@
             <StackLayout Margin="0, 50, 0, 0">
                 <Button x:Name="BtnAddNewAssessment"
                         Text="Add New Assessment"
+                        Padding="5"
                         Clicked="BtnAddNewAssessment_Clicked"/>
                 <Button x:Name="BtnBack" 
-                        Text="Go Back" 
+                        Text="Go Back"
+                        BackgroundColor="Teal"
+                        Margin="0,2,0,0"
                         Padding="5"
                         Clicked="BtnBack_Clicked"/>
             </StackLayout>

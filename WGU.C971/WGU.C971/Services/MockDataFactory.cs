@@ -1,7 +1,5 @@
 ﻿using System;
 using SQLite;
-using System.Collections.Generic;
-using System.Text;
 using WGU.C971.Models;
 
 namespace WGU.C971.Services
@@ -21,70 +19,51 @@ namespace WGU.C971.Services
                 connection.Insert(term);
             }
 
-            List<Course> courses = new List<Course>();
-
-            for (int i = 1; i <= 2; i++)
+            Course course = new Course()
             {
-                string name = $"Test Course {i}";
-
-                Course course = new Course()
-                {
-                    Name = name,
-                    TermId = term.Id,
-                    Status = "Anticipate To Take",
-                    StartDate = DateTime.Today.AddDays(4),
-                    EndDate = DateTime.Today.AddMonths(4).AddDays(4),
-                    InstructorName = "Simon Magabe",
-                    InstructorEmail = "smagabe@wgu.edu",
-                    InstructorPhone = "555-555-5555",
-                    Note = $"Welcome to WGU. This is Test Course {i}"
-                };
-                courses.Add(course);
-            }
+                Name = "Test Course",
+                TermId = term.Id,
+                Status = "Anticipate To Take",
+                StartDate = DateTime.Today.AddDays(4),
+                EndDate = DateTime.Today.AddMonths(4).AddDays(4),
+                InstructorName = "Simon Magabe",
+                InstructorEmail = "smagabe@wgu.edu",
+                InstructorPhone = "555-555-5555",
+                Note = $"Welcome to WGU. This is Test Course."
+            };
 
             using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
             {
-                connection.InsertAll(courses);
+                connection.Insert(course);
             }
-            
-            List<Assessment> perfAssessments = new List<Assessment>();
 
-            for (int i = 0; i < 2; i++)
+            Assessment performanceAssessment = new Assessment()
             {
-                Assessment performanceAssessment = new Assessment()
-                {
-                    Name = "PAG1",
-                    CourseId = courses[i].Id,
-                    StartDate = DateTime.Today.AddDays(4),
-                    EndDate = DateTime.Today.AddDays(4).AddHours(2.5),
-                    Type = "Performance"
-                };
-                perfAssessments.Add(performanceAssessment);
-            }
+                Name = "PAG1",
+                CourseId = course.Id,
+                StartDate = DateTime.Today.AddDays(10),
+                EndDate = DateTime.Today.AddDays(10).AddHours(2.5),
+                Type = "Performance"
+            };
 
-            
+
             using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
             {
-                connection.InsertAll(perfAssessments);
+                connection.Insert(performanceAssessment);
             }
 
-            List<Assessment> objectiveAssessments = new List<Assessment>();
-            for (int i = 0; i < 2; i++)
+            Assessment objectiveAssessment = new Assessment()
             {
-                Assessment objectiveAssessment = new Assessment()
-                {
-                    Name = "OBJ1",
-                    CourseId = courses[i].Id,
-                    StartDate = DateTime.Today.AddDays(4),
-                    EndDate = DateTime.Today.AddDays(4).AddHours(2.5),
-                    Type = "Objective"
-                };
-                objectiveAssessments.Add(objectiveAssessment);
+                Name = "OBJ1",
+                CourseId = course.Id,
+                StartDate = DateTime.Today.AddDays(20),
+                EndDate = DateTime.Today.AddDays(20).AddHours(2.5),
+                Type = "Objective"
+            };
 
-            }
             using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
             {
-                connection.InsertAll(objectiveAssessments);
+                connection.Insert(objectiveAssessment);
             }
         }
     }

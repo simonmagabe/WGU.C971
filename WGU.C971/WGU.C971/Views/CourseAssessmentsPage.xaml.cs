@@ -1,9 +1,6 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WGU.C971.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

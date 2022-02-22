@@ -2,9 +2,6 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WGU.C971.Models;
 using WGU.C971.Services;
 using WGU.C971.Views;
@@ -82,7 +79,6 @@ namespace WGU.C971
             {
                 TermList = connection.Table<Term>().ToList();
                 DegreePlanListView.ItemsSource = TermList;
-                DisplayNotifications();
             }
         }
 

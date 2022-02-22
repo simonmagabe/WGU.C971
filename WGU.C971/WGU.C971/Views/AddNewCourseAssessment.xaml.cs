@@ -1,9 +1,6 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WGU.C971.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -34,7 +31,7 @@ namespace WGU.C971.Views
                         Name = TxtAssessmentName.Text,
                         Type = PickerAssessmentType.SelectedItem.ToString(),
                         StartDate = DatePickerStartDate.Date,
-                        EndDate = DatePickerEndDate.Date,
+                        EndDate = DatePickerEndDate.Date.AddHours(2.5),
                         CourseId = Course.Id
                     };
 
