@@ -210,7 +210,6 @@ namespace WGU.C971.Droid
 			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_startY = global::WGU.C971.Droid.Resource.Styleable.GradientColor_android_startY;
 			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_tileMode = global::WGU.C971.Droid.Resource.Styleable.GradientColor_android_tileMode;
 			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_type = global::WGU.C971.Droid.Resource.Styleable.GradientColor_android_type;
-			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::WGU.C971.Droid.Resource.Drawable.plugin_lc_smallicon;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::WGU.C971.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::WGU.C971.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::WGU.C971.Droid.Resource.Attribute.font;
@@ -8954,16 +8953,13 @@ namespace WGU.C971.Droid
 			public const int notify_panel_notification_icon_bg = 2131165311;
 			
 			// aapt resource value: 0x7F070080
-			public const int plugin_lc_smallicon = 2131165312;
+			public const int tooltip_frame_dark = 2131165312;
 			
 			// aapt resource value: 0x7F070081
-			public const int tooltip_frame_dark = 2131165313;
+			public const int tooltip_frame_light = 2131165313;
 			
 			// aapt resource value: 0x7F070082
-			public const int tooltip_frame_light = 2131165314;
-			
-			// aapt resource value: 0x7F070083
-			public const int xamarin_logo = 2131165315;
+			public const int xamarin_logo = 2131165314;
 			
 			static Drawable()
 			{

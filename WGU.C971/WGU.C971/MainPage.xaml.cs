@@ -1,5 +1,4 @@
 ﻿using Plugin.LocalNotification;
-using Plugin.LocalNotifications;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -112,11 +111,13 @@ namespace WGU.C971
                         };
                         NotificationCenter.Current.Show(courseEndNotification);
 
+                        // Assessments Start/End Date Notifications
                         string assessmentQueryString = $"SELECT * FROM Assessment WHERE CourseId = { course.Id };";
                         List<Assessment> assessments = connection.Query<Assessment>(assessmentQueryString);
+
                         foreach (Assessment assessment in assessments)
                         {
-                            string assessmentStartTitle = "Course Start Notification";
+                            string assessmentStartTitle = "Assessment Start Notification";
                             string assessmentStartMessage = assessment.StartDate >= DateTime.Now ? $"{assessment.Name} is Scheduled to Start. \nStart Date: {assessment.StartDate}" :
                                 $"{assessment.Name} is Already Started. \nStart Date Was: {assessment.StartDate}";
 
@@ -127,7 +128,7 @@ namespace WGU.C971
                             };
                             NotificationCenter.Current.Show(assessmentStartNotification);
 
-                            string assessmentEndTitle = "Course End Notification";
+                            string assessmentEndTitle = "Assessment End Notification";
                             string assessmentEndMessage = assessment.EndDate >= DateTime.Now ? $"{assessment.Name} Ends On: {assessment.EndDate}" :
                                 $"{assessment.Name} Has Ended. \nEnd Date Was On: {assessment.EndDate}";
 

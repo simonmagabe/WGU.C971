@@ -14,7 +14,6 @@ namespace WGU.C971.Views
         public AddNewTermPage(MainPage mainPage)
         {
             InitializeComponent();
-            DatePickerEndDate.Date = DateTime.Now.AddMonths(4);
             MainPage = mainPage;
         }
 
