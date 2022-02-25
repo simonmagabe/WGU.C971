@@ -38,13 +38,6 @@ namespace WGU.C971.Views
                             throw new ApplicationException("Start Date cannot be Greater than the End Date");
                         }
 
-                        int days = (term.EndDate - term.StartDate).Days;
-
-                        if ((term.EndDate - term.StartDate).Days < days || (term.EndDate - term.StartDate).Days > days)
-                        {
-                            throw new ApplicationException("A Full Term MUST be 4 Months. Check your Dates");
-                        }
-
                         connection.CreateTable<Term>();
                         int insertedRows = connection.Insert(term);
                         MainPage.TermList.Add(term);
@@ -83,11 +76,6 @@ namespace WGU.C971.Views
             return !String.IsNullOrWhiteSpace(newTermName.Text) 
                 && !String.IsNullOrWhiteSpace(DatePickerStartDate.Date.ToString()) 
                 && !String.IsNullOrWhiteSpace(DatePickerEndDate.Date.ToString());
-        }
-
-        private void DatePickerStartDate_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            DatePickerEndDate.Date = DatePickerStartDate.Date.AddMonths(4);
         }
 
         private async void CancelBtn_Clicked(object sender, EventArgs e)

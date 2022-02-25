@@ -1,4 +1,5 @@
-﻿using Plugin.LocalNotifications;
+﻿using Plugin.LocalNotification;
+using Plugin.LocalNotifications;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -47,10 +48,12 @@ namespace WGU.C971
                 connection.CreateTable<Term>();
                 TermList = connection.Table<Term>().ToList();
                 connection.CreateTable<Course>();
+                CoursesList = connection.Table<Course>().ToList();
                 connection.CreateTable<Assessment>();
+                AssessmentList = connection.Table<Assessment>().ToList();
             }
 
-            if (TermList.Count > 0 && NeedMockData)
+            if (TermList.Count < 1)
             {
                 using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
                 {
@@ -64,21 +67,13 @@ namespace WGU.C971
 
                     MockDataFactory.GenerateSampleMockData(1);
                 }
-
-                NeedMockData = false;
-                DisplayNotifications();
-            }
-            else if (NeedMockData)
-            {
-                MockDataFactory.GenerateSampleMockData(3);
-                DisplayNotifications();
-                NeedMockData=false;
             }
 
             using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
             {
                 TermList = connection.Table<Term>().ToList();
                 DegreePlanListView.ItemsSource = TermList;
+                DisplayNotifications();
             }
         }
 
@@ -93,34 +88,55 @@ namespace WGU.C971
 
                     foreach (Course course in courses)
                     {
-                        double daysToStartDate = (course.StartDate - DateTime.Now).TotalDays;
-                        double daysToEndDate = (course.EndDate - DateTime.Now).TotalDays;
-
-                        if (daysToStartDate <= 7)
+                        string courseStartTitle = "Course Start Notification";
+                        string courseStartMessage = course.StartDate >= DateTime.Today ? $"{course.Name} is Scheduled to Start. \nStart Date: {course.StartDate}" : 
+                            $"{course.Name} is Already Started. \nStart Date Was: {course.StartDate}";
+                        
+                        var courseStartNotification = new NotificationRequest
                         {
-                            string title = "Course Due Soon Notification";
-                            string message = $"{course.Name} Will Start Soon. \nStart Date: {course.StartDate}";
-                            CrossLocalNotifications.Current.Show(title, message);
-                        }
+                            Title = courseStartTitle,
+                            Description = courseStartMessage,
+                            ReturningData = "Test Data",
+                            NotificationId = course.Id,
+                        };
+                        NotificationCenter.Current.Show(courseStartNotification);
 
-                        if (daysToEndDate <= 7)
+                        string courseEndTitle = "Course End Notification";
+                        string courseEndMessage = course.EndDate >= DateTime.Today ? $"{course.Name} Ends On: {course.EndDate}" : 
+                            $"{course.Name} Has Ended. \nEnd Date Was On: {course.EndDate}";
+
+                        var courseEndNotification = new NotificationRequest
                         {
-                            string title = "Course End Soon Notification";
-                            string message = $"{course.Name} Will End Soon. \nEnd Date: {course.EndDate}";
-                            CrossLocalNotifications.Current.Show(title, message);
-                        }
+                            Title = courseEndTitle,
+                            Description = courseEndMessage,
+                        };
+                        NotificationCenter.Current.Show(courseEndNotification);
 
-                        string assessmentQueryString = $"SELECT * FROM Assessment WHERE CourseId = '{ course.Id }'";
+                        string assessmentQueryString = $"SELECT * FROM Assessment WHERE CourseId = { course.Id };";
                         List<Assessment> assessments = connection.Query<Assessment>(assessmentQueryString);
                         foreach (Assessment assessment in assessments)
                         {
-                            double daysToStartAssessment = (assessment.StartDate - DateTime.Now).TotalDays;
-                            if (daysToStartAssessment <= 5)
+                            string assessmentStartTitle = "Course Start Notification";
+                            string assessmentStartMessage = assessment.StartDate >= DateTime.Now ? $"{assessment.Name} is Scheduled to Start. \nStart Date: {assessment.StartDate}" :
+                                $"{assessment.Name} is Already Started. \nStart Date Was: {assessment.StartDate}";
+
+                            var assessmentStartNotification = new NotificationRequest
                             {
-                                string title = "Assessment Due Soon Notification";
-                                string message = $"{ assessment.Name } is Due Soon. \nDate Due: {assessment.EndDate}";
-                                CrossLocalNotifications.Current.Show(title, message);
-                            }
+                                Title = assessmentStartTitle,
+                                Description = assessmentStartMessage
+                            };
+                            NotificationCenter.Current.Show(assessmentStartNotification);
+
+                            string assessmentEndTitle = "Course End Notification";
+                            string assessmentEndMessage = assessment.EndDate >= DateTime.Now ? $"{assessment.Name} Ends On: {assessment.EndDate}" :
+                                $"{assessment.Name} Has Ended. \nEnd Date Was On: {assessment.EndDate}";
+
+                            var assessmentEndNotification = new NotificationRequest
+                            {
+                                Title = assessmentEndTitle,
+                                Description = assessmentEndMessage,
+                            };
+                            NotificationCenter.Current.Show(assessmentEndNotification);
                         }
                     }
                 }

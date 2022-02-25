@@ -15,7 +15,7 @@
             </StackLayout>
             <Entry x:Name="newTermName" Placeholder="TERM NAME" BackgroundColor="AliceBlue"/>
             <Label Text="START"/>
-            <DatePicker x:Name="DatePickerStartDate" PropertyChanged="DatePickerStartDate_PropertyChanged"/>
+            <DatePicker x:Name="DatePickerStartDate"/>
             <Label Text="END DATE"/>
             <DatePicker x:Name="DatePickerEndDate"/>
 
