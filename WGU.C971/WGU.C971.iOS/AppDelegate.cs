@@ -25,6 +25,10 @@ namespace WGU.C971.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
+            // Ask the user for permission to show notifications on iOS 10.0+ at startup.
+            // If not asked at startup, user will be asked when showing the first notification.
+            Plugin.LocalNotification.NotificationCenter.AskPermission();
+
             string fileName = "semesters_db.db3";
             string folderPath = Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "..", "Library");
             string completepath = Path.Combine(folderPath, fileName);
@@ -32,6 +36,13 @@ namespace WGU.C971.iOS
             LoadApplication(new App(completepath));
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override void WillEnterForeground(UIApplication uiApplication)
+        {
+            base.WillEnterForeground(uiApplication);
+
+            Plugin.LocalNotification.NotificationCenter.ResetApplicationIconBadgeNumber(uiApplication);
         }
     }
 }

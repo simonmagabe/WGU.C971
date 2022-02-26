@@ -12,8 +12,8 @@ namespace WGU.C971.Services
             Term term = new Term()
             {
                 Name = $"Term {termId}",
-                StartDate = DateTime.Today.AddDays(4),
-                EndDate = DateTime.Today.AddMonths(4).AddDays(4)
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today.AddMonths(3)
             };
             using (SQLiteConnection connection = new SQLiteConnection(App.FilePath))
             {
@@ -25,8 +25,8 @@ namespace WGU.C971.Services
                 Name = $"Test Course 1",
                 TermId = term.Id,
                 Status = "Anticipate To Take",
-                StartDate = DateTime.Today.AddDays(4),
-                EndDate = DateTime.Today.AddMonths(4).AddDays(4),
+                StartDate = DateTime.Today.AddDays(3),
+                EndDate = DateTime.Today.AddDays(6),
                 InstructorName = "Simon Magabe",
                 InstructorEmail = "smagabe@wgu.edu",
                 InstructorPhone = "555-555-5555",
